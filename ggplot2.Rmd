@@ -74,3 +74,55 @@ ggplot(data = ca) +
   geom_point(aes(x = year, y = visitors))
 ```
 
+Realistically though, this doesn't tell us much. The parks are all mish-mashed together because there's no difference in their data points. To remedy this, we add colour to the geom points based on park name.
+
+```{r park names}
+ggplot(data = ca)+
+  geom_point(aes(x = year, y = visitors, color = park_name))
+```
+ 
+ Now we want to polish the plot by adding details, like a title. We'll also improve the axis labels and the legend. 
+
+```{r titles etc}
+ggplot(data = ca) +
+    geom_point(aes(x = year, y = visitors, color = park_name)) +
+    labs(x = "Year",
+       y = "Visitation",
+       title = "California National Park Visitation") +
+    theme_bw() +
+    theme(legend.title=element_blank())
+```
+
+ 
+ Now I'm going to practice myself, with a slightly different dataset. First, bind the dataset to a dataframe so we can plot it:
+ 
+```{r se data}
+ggplot(data = se)
+```
+
+Next we'll add the datapoints and colour them to correspond with park name, and see what needs to be done after that:
+
+```{r add datapoints}
+ggplot(data = se)+
+  geom_point(aes(x = year, y = visitors, color = park_name))
+```
+
+Cool! It worked! But now, as instructed, we're actually going to make the colour represent state:
+
+```{r change colour id}
+ggplot(data = se)+
+  geom_point(aes(x = year, y = visitors, color = state))
+```
+
+We also want to add titles and change the theme:
+
+```{r title & themes}
+ggplot(data = se)+
+  geom_point(aes(x = year, y = visitors, color = state))+
+  labs(x = "Year",
+       y = "Visitation",
+       title = "Annual Southeast National Park Visitation") +
+    theme_bw() +
+    theme(legend.title=element_blank())
+```
+
