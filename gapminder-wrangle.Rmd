@@ -18,5 +18,38 @@ Lights on!
 Now we're ready to read in the data, which is from GitHub. 
 
 ```{r ohidata}
-gapminder <- readr("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+gapminder <- read.csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
 ```
+
+Strangely, readr wouldn't work for me. I used read.csv instead.
+Now we can inspect the data:
+
+```{r inspect}
+head(gapminder)
+tail(gapminder, 10) #specifying a number will show that many lines of the data
+```
+
+This is a new command for me: str(). It shows the structure of an object. Seems useful...
+
+```{r structure}
+str(gapminder)
+```
+
+Very handy! Will keep this in mind for a conceptual data summary in future datasets.
+Bear in mind that data.frames are preferred to arrays and matrices, essentially because they're more organised. 
+
+Now we can unravel some interesting data frame info:
+
+```{summary}
+names(gapminder)
+dim(gapminder) # shows dimensions i.e. row x col
+ncol(gapminder) # number of columns i.e. variables
+nrow(gapminder) # number of rows i.e. observations
+summary(gapminder) # summary statistics
+library(skimr)
+skim(gapminder) # also does summary statistics, but let's compare...
+```
+
+So skimr seems to give a more thorough overview of the data. 
+
+    
