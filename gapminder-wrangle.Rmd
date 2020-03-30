@@ -66,3 +66,27 @@ group_by()  # changes scope of above functions from the entire dataset to group-
 
 ```
 
+First we'll practise filteringA:
+
+```{r filter}
+# Filter using a value
+filter(gapminder, lifeExp < 29)
+
+# Filter using a string
+filter(gapminder, country == "Mexico")
+```
+But the == operator only works on one thing at a time, so if we want more than one country, we need to use the %in% operator. I think this is some kind of 'pipe'? Don't really remember though
+
+```{r two}
+filter(gapminder, country %in% c("Mexico", "Peru"))
+```
+
+Now a challenge - find the average life expectancy in Brazil between 1987 and 2007. 
+
+```{r challenge}
+#assign a variable
+Brazil <- filter(gapminder, country == "Brazil", year > 1986)
+
+#then find the mean of the new dataset
+mean(Brazil$lifeExp)
+```
