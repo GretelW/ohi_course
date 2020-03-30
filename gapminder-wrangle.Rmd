@@ -52,4 +52,17 @@ skim(gapminder) # also does summary statistics, but let's compare...
 
 So skimr seems to give a more thorough overview of the data. 
 
-    
+# dplyr basics
+
+There's five (5) main functions to perform basic data manipulation. In every case, the first argument is a data frame, and the subsequent arguments describe what to do with the data frame. The result is a new data frame. 
+
+```{r dplyr}
+filter()    # pick observations by their values i.e. subsets row-wise
+select()    # pick observations by their names
+mutate()    # create new variables with functions of existing variables
+summarise() # collapse many values down to a single summary
+arrange()   # reorder the rows
+group_by()  # changes scope of above functions from the entire dataset to group-by-group
+
+```
+
