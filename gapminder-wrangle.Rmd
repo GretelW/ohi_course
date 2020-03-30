@@ -90,3 +90,71 @@ Brazil <- filter(gapminder, country == "Brazil", year > 1986)
 #then find the mean of the new dataset
 mean(Brazil$lifeExp)
 ```
+
+Now we move onto the select() function, for columns.
+
+```{r select}
+select(gapminder, year, country, lifeExp)
+select(gapminder, year, -continent, -lifeExp)
+```
+
+Then combine filter() and select() ...
+
+```{r combine}
+
+gap_cambodia <- filter(gapminder, cougntry == "Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp)
+```
+
+# Now we're gonna learn about pipes!!
+
+It removes the need to nest multi-operation commands inside each other, and you also don't need to make temporary variables. 
+Ctrl + Shift + M
+Think "and then"
+
+```{r piping}
+gapminder %>% head()
+
+```
+The outcome is the same as gapminder(head), but the syntax starts with the data and then the action, like a SVO sentence instead of VSO. 
+So for comparison:
+
+```{r cambodia comparison}
+
+gap_cambodia <- filter(gapminder, cougntry == "Cambodia")
+gap_cambodia2 <- select(gap_cambodia, -continent, -lifeExp)
+
+# becomes
+
+gap_cambodia <- gapminder %>% filter(country == "Cambodia")
+gap_cambodia2 <- gap_cambodia %>% select(-continent, -lifeExp)
+
+#AND THEEEEEN to get rid of the temporary variables, we combine the operations:
+
+gap_cambodia <- gapminder %>% 
+  filter(country == "Cambodia") %>% 
+  select(-continent, -lifeExp)
+```
+
+So now this reads more intuitively: "Start with gapminder data, and then filter for Cambodia and then drop the variables continent and lifeExp."
+
+Next we'll use mutate(), to add new variables. A good example would be to add an index or label column.
+
+```{r mutate}
+gapminder %>% 
+  mutate(gdp = pop * gdpPercap)
+```
+
+Now, to practise:
+
+```{r mutate new}
+#Calculate the population in thousands for all Asian countries in 2007 and add it as a new column
+
+gapminder %>% 
+  filter(continent == "Asia", 
+         year == 2007) %>% 
+  mutate(pop_thousands = pop/1000) %>% 
+  select(country, year, pop_thousands) #this line is optional, to tidy the dataset
+  
+
+```
