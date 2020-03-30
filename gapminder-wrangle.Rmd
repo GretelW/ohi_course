@@ -1,0 +1,22 @@
+---
+title: "gapminder-wrangle.Rmd"
+author: "Gretel Waugh"
+date: "30/03/2020"
+output: html_document
+---
+#Here we go...
+
+We've moved onto Chapter 6, where I'll be learning to wrangle data using dplyr. Tidyverse is already installed, but I'll need to reload because we restarted R:
+
+```{r tidyverse}
+
+library(tidyverse)
+```
+
+Lights on!
+
+Now we're ready to read in the data, which is from GitHub. 
+
+```{r ohidata}
+gapminder <- readr("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+```
