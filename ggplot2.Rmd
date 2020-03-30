@@ -28,3 +28,37 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+# ggplot Practice
+
+I'm going to document the OHI course here, to get a little experience in writing R Markdowns as I work. First, we load tidyverse:
+```{r tidyverse, echo=TRUE}
+
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+Then we load in the dataset that we need. In this case it's a practice dataset about US National Parks.
+
+```{r parks data}
+#National Parks in California
+ca <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/ca.csv") 
+
+#Acadia National Park
+acadia <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/acadia.csv")
+
+#Southeast US National Parks
+se <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/se.csv")
+
+#2016 Visitation for all Pacific West National Parks
+visit_16 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/visit_16.csv")
+
+#All Nationally designated sites in Massachusetts
+mass <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/mass.csv")
+```
+
+Now we want to visualise the data - 
+
+```{r header, echo = TRUE}
+head(ca)
+```
