@@ -34,7 +34,6 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 I'm going to document the OHI course here, to get a little experience in writing R Markdowns as I work. First, we load tidyverse:
 ```{r tidyverse, echo=TRUE}
 
-install.packages("tidyverse")
 library(tidyverse)
 ```
 
