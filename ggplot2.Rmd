@@ -126,3 +126,22 @@ ggplot(data = se)+
     theme(legend.title=element_blank())
 ```
 
+Now we're going to learn Faceting, which allows us to split the plot into several plots based on data in the dataset. 
+To do this, we can facet by a particular discrete variable:
+
+```{r facet}
+ggplot(data = se) +
+    geom_point(aes(x = year, y = visitors)) +
+    facet_wrap(~ state)
+```
+
+Then we can look at park name as a differential within state, like this:
+
+```{r park name by state}
+
+ ggplot(data = se) +
+     geom_point(aes(x = year, y = visitors, color = park_name)) +
+     facet_wrap(~ state, scales = "free")
+```
+
+There's lots more information, but I'm going to use it as a reference resource so I can move on to data wrangling through dplyr.
