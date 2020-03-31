@@ -57,7 +57,7 @@ So skimr seems to give a more thorough overview of the data.
 There's five (5) main functions to perform basic data manipulation. In every case, the first argument is a data frame, and the subsequent arguments describe what to do with the data frame. The result is a new data frame. 
 
 ```{r dplyr}
-filter()    # pick observations by their values i.e. subsets row-wise
+filter()    # pick observations by their values ie subsets row-wise
 select()    # pick observations by their names
 mutate()    # create new variables with functions of existing variables
 summarise() # collapse many values down to a single summary
@@ -225,3 +225,53 @@ asia_lifeExp <- gapminder %>%
 ```
 
 Will need to practise this in the long term. 
+
+## Joining datasets
+
+This will be useful, to save making extra spreadsheets then importing.
+
+```{r joining}
+
+#left_join keeps everything from left table, matches as much as possible from right table
+#right_join keeps everything from right table, matches as much as possible from left table
+#inner_join only keeps observations for which both datasets have a value
+#full_join keeps all observations from both tables and substitutes 'NA' where the values don't exist in either dataset
+```
+
+Just working through this example...
+
+```{r co2 example}
+
+co2 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/co2.csv")
+
+#familiarise yourswelf with dataset
+co2 %>% head()
+co2 %>% dim()
+
+#filter to year 2007
+gap_2007 <- gapminder %>% 
+  filter(year == 2007)
+gap_2007 %>% dim()
+
+
+## left_join gap_2007 to co2
+lj <- left_join(gap_2007, co2, by = "country")
+
+## explore
+lj %>% dim() #142
+lj %>% summary() # lots of NAs in the co2_2017 columm
+lj %>% View() 
+
+## right_join gap_2007 and co2
+rj <- right_join(gap_2007, co2, by = "country")
+
+## explore
+rj %>% dim() # 12
+rj %>% summary()
+rj %>% View() 
+
+
+
+```
+
+We don't seem to have co2 data for many countries, so they show up as NA.
