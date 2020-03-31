@@ -158,3 +158,70 @@ gapminder %>%
   
 
 ```
+
+Now we move to group_by(), a grouping variable.
+
+```{r group}
+
+gapminder %>% 
+  filter(year == 2002) %>% 
+  group_by(continent) %>% 
+  mutate(cont_pop = sum(pop))
+
+```
+
+Using the summarise function will narrow the dataset to only columns that are included in the group_by()
+
+```{r summarising a group}
+gapminder %>% 
+  group_by(continent) %>% 
+  summarise(cont_pop = sum(pop)) %>% 
+  ungroup()
+```
+
+We can also use it with more than one variable. (*I'm getting kind of confused here - bit of information overload so taking these notes to refer back to)
+
+```{r more than one variable}
+
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarise(cont_pop = sum(pop))
+
+```
+
+Next we can use the arrange() function to order columns by whichever variable we choose.
+
+```{r arrange}
+
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarise(cont_pop = sum(pop)) %>% 
+  arrange(continent)
+
+```
+
+Now for an exercise, we will determine the maximmum GDP per continent across all years.
+
+```{r gdp}
+
+gapminder %>%
+  mutate(gdp = pop * gdpPercap) %>% 
+  group_by(continent) %>% 
+  mutate(max_gdp = max(gdp)) %>% 
+  filter(gdp == max_gdp)
+
+
+```
+
+Now we're walking through a new problem:
+
+```{r Asia}
+#Arrange df in descending order
+asia_lifeExp <- gapminder %>% 
+  filter(continent == "Asia") %>% 
+  group_by(country) %>% 
+  filter(lifeExp == max(lifeExp)) %>% 
+  arrange(year)
+```
+
+Will need to practise this in the long term. 
